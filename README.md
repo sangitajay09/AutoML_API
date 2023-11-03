@@ -1,4 +1,7 @@
-Intern name - Sangita Jayendran
+The project is implemented using a web application where users can upload a CSV file
+containing data for model training. The system will then employ AutoML to build and
+evaluate models, presenting users with model statistics and allowing them to perform real-
+time predictions.
 
 
 To execute AutoML app please do the following

@@ -1,0 +1,1 @@
+{"Input Variables": ["Glucose", "BloodPressure", "SkinThickness", "BMI"], "Tpot Score": 0.7746741154562383, "Best Pipeline": "The top performing pipeline is saved to the file 'tpot_digits_pipeline.py'"}

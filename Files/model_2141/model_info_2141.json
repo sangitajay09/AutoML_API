@@ -1,0 +1,1 @@
+{"Input Variables": ["Age", "SibSp", "Parch", "Sex_female", "Sex_male"], "Tpot Score": 0.7890625, "Best Pipeline": "The top performing pipeline is saved to the file 'tpot_digits_pipeline.py'"}

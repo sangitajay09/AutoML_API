@@ -1,0 +1,1 @@
+{"hair": {"min": 0.0, "max": 1.0}, "eggs": {"min": 0.0, "max": 1.0}, "backbone": {"min": 0.0, "max": 1.0}, "legs": {"min": 0.0, "max": 8.0}, "tail": {"min": 0.0, "max": 1.0}, "catsize": {"min": 0.0, "max": 1.0}}

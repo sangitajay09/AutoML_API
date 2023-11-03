@@ -1,0 +1,1 @@
+{"Pregnancies": {"min": 0.0, "max": 17.0}, "Glucose": {"min": 0.0, "max": 199.0}, "BloodPressure": {"min": 0.0, "max": 122.0}, "SkinThickness": {"min": 0.0, "max": 99.0}, "Insulin": {"min": 0.0, "max": 846.0}, "Age": {"min": 21.0, "max": 81.0}}

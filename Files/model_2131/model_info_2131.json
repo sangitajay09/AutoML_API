@@ -1,0 +1,1 @@
+{"Input Variables": ["Mileage", "Cylinder", "Make_Buick", "Make_Cadillac", "Make_Chevrolet", "Make_Pontiac", "Make_SAAB", "Make_Saturn"], "Tpot Score": -10610645.259125164, "Best Pipeline": "The top performing pipeline is saved to the file 'tpot_digits_pipeline.py'"}

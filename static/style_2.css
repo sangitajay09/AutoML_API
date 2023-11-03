@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    width:100%;
+    background-image: url('https://img.freepik.com/free-vector/ai-technology-brain-background-vector-digital-transformation-concept_53876-117820.jpg');
+    background-position: center;
+    background-size: cover;
+    /*background-repeat:repeat;*/
+
+}
+
+/*#left-header-elem{*/
+/*    color: #000000;*/
+/*    text-align: left;*/
+/*    padding: 20px;*/
+
+/*}*/
+
+#page{
+    background-image: url('https://www.shutterstock.com/image-vector/artificial-intelligence-concept-technology-background-260nw-1111962779.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat:repeat;
+    height: 100%;
+    width:100%;
+
+}
+header {
+    /*background-color: #333;*!*/
+    color: #000000;
+    text-align: center;
+    padding: 20px;
+}
+
+.background-image {
+    background-image: url('http://www.birds.com/wp-content/uploads/home/bird4.jpg');
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    height: 1500px;
+    width: 1000px;/* Adjust the height as needed */
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    border: 1px solid #000000;
+    padding: 20px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    /*padding: 5px 5px;*/
+    border: none;
+    cursor: pointer;
+}

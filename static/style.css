@@ -1,0 +1,11 @@
+h1
+{
+    text-align:center;
+}
+/*.main works for all in the body text*/
+.main{
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align:left;
+    /*border:10px solid blue;*/
+}

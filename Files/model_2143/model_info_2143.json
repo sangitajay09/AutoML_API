@@ -1,0 +1,1 @@
+{"Input Variables": ["Sales", "Quantity", "Discount", "Ship Mode_First Class", "Ship Mode_Same Day", "Ship Mode_Second Class", "Ship Mode_Standard Class", "Category_Furniture", "Category_Office Supplies", "Category_Technology"], "Tpot Score": -10285.806168814006, "Best Pipeline": "The top performing pipeline is saved to the file 'tpot_digits_pipeline.py'"}

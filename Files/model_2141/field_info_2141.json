@@ -1,0 +1,1 @@
+{"Age": {"min": 0.92, "max": 80.0}, "SibSp": {"min": 0.0, "max": 3.0}, "Parch": {"min": 0.0, "max": 4.0}, "Sex_female": {"min": "0", "max": "1"}, "Sex_male": {"min": "0", "max": "1"}}

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>AutoML Hub</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/static/assets/img/favicon.png" rel="icon">
+    <link href="/static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/static/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="/static/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="/static/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/static/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/static/assets/css/style.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Include Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+    /* Custom CSS to adjust flash message height */
+        .alert {
+            max-width: 500px; /* Adjust maximum width as needed */
+            max-height: 50px; /* Adjust maximum height as needed */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 2px 2px 2px 2px;
+            font-size: 14px; /* Adjust font size as needed */
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="/home" class="logo d-flex align-items-center">
+            <img src="/static/assets/img/logo.png" alt="">
+            <span class="d-none d-lg-block">AutoML Hub</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div><!-- End Logo -->
+    </header>
+
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link " href="/home">
+                    <i class="bi bi-grid"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+        </ul>
+    </aside>
+
+
+
+
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/home">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+            </nav>
+        </div><!-- End Page Title -->
+        <section class="section dashboard">
+            <div class="row">
+                <!-- Left side columns -->
+                <div class="col-lg-9">
+                    <div class="row">
+                        <!-- upload file-->
+                        <div class="col-12">
+                            <div class="card info-card customers-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Upload file </h5>
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-cloud-upload"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <form method="POST" action="/upload" enctype="multipart/form-data">
+                                                <div class="card-entry">
+                                                    <label for="task">Select task</label>
+                                                        <select name="task" id="task">
+                                                          {% for task in tasks %}
+                                                            <option value="{{ task }}">{{ task }}</option>
+                                                          {% endfor %}
+                                                        </select>
+                                                    <br>
+                                                    <br>
+
+<!--                                                    <label for="domain">Enter the domain</label>-->
+<!--                                                    <input type="text" id="domain" name="domain" required><br><br>-->
+                                                    <label for="domain">Select the domain</label>
+                                                        <select name="domain" id="domain">
+                                                          {% for option in options %}
+                                                            <option value="{{ option }}">{{ option }}</option>
+                                                          {% endfor %}
+                                                        </select>
+                                                    <br>
+                                                    <br>
+                                                    <label for="file">Upload your file:</label>
+                                                    <input type="file" id = "file" name="file" required>
+                                                </div>
+
+                                                <div class="card-entry">
+                                                    <button type="submit" value = "submit">Submit</button>
+                                                    <p>Maximum file size: 5MB</p>
+                                                </div>
+                                                <div>
+                                                 {% with messages = get_flashed_messages(with_categories=true) %}
+                                                    {% if messages %}
+                                                        {% for category, message in messages %}
+                                                            {% if category != 'info' %}
+                                                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                                                {{ message }}
+                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endwith %}
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!--End file uplaod-->
+
+                        <!-- Reports -->
+                        <div class="col-xxl-12">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Reports </h5>
+                                    <div id="histogramChart"></div>
+
+
+                                        <script>
+                                            $.ajax({
+                                                url: '/get_chart_data',
+                                                method: 'GET',
+                                                dataType: 'json',
+                                                success: function(data) {
+                                                    // Prepare data for ApexCharts
+                                                    const options = {
+                                                        chart: {
+                                                            height: 350,
+                                                            type: 'bar',
+                                                            toolbar: {
+                                                                show: false
+                                                            },
+                                                        },
+                                                        markers: {
+                                                            size: 4
+                                                        },
+                                                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                                                        xaxis: {
+                                                            name: 'Domain',
+                                                            categories: data.domain,
+                                                        },
+                                                        yaxis: {
+                                                            name: '# of models'
+                                                        },
+                                                        series: [{
+                                                            name: 'Classification',
+                                                            data: data.Classification
+                                                            }, {
+                                                            name: 'Regression',
+                                                            data: data.Regression
+                                                            }]
+                                                    };
+
+
+                                                    // Create ApexCharts instance
+                                                    const chart = new ApexCharts(document.querySelector("#histogramChart"), options);
+
+                                                    // Render the chart
+                                                    chart.render();
+                                                },
+                                                error: function(error) {
+                                                    console.error('Error fetching data:', error);
+                                                }
+                                            });
+                                        </script>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    {% if category == 'info' %}
+                                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        </div>
+                        <!-- current table -->
+                        <div class="col-12">
+                            <div class="card recent-sales overflow-auto">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Current model </h5>
+
+                                    <table class="table table-borderless datatable" id="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Domain</th>
+                                                <th scope="col">Model name</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in result :%}
+                                                {% if result[loop.index0][0] > Hist_ID %}
+                                                    <tr>
+                                                        <td>{{result[loop.index0][0]}}</td>
+                                                        <td>{{result[loop.index0][1]}}</td>
+                                                        <td>{{result[loop.index0][2]}}</td>
+                                                        <td>{{result[loop.index0][3]}}</td>
+                                                        <td>{{result[loop.index0][4]}}</td>
+                                                        <td>{% if result[loop.index0][5] == 'Success' %}
+                                                            <span class="badge bg-success">Success</span>
+                                                            {% elif result[loop.index0][5] =='Failure' %}
+                                                            <span class="badge bg-danger">Failure</span>
+                                                            {% elif result[loop.index0][5] =='Running' %}
+                                                            <span class="badge bg-info">Running</span>
+                                                            {% elif result[loop.index0][5] =='Evaluated' %}
+                                                            <span class="badge bg-primary">Evaluated</span>
+                                                            {% elif result[loop.index0][5] =='Submitted' %}
+                                                            <span class="badge bg-secondary">Submitted</span>
+                                                            {% endif %}
+                                                        </td>
+
+                                                        <td>
+                                                            {% if result[loop.index0][5] == 'Success' %}
+                                                                <form method="POST" action="{{url_for('predict', id=result[loop.index0][0])}}" >
+                                                                    <div>
+                                                                        <input type="submit" name="Predict" value="Predict">
+                                                                    </div>
+                                                                </form>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>{% if result[loop.index0][5] == 'Success' %}
+                                                            <a href="{{url_for('model_info', id=result[loop.index0][0])}}">
+                                                                <i class="bi bi-info-circle"></i>details </a>
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                {% endif %}
+                                            {%endfor%}
+                                        </tbody>
+                                    </table>
+                                    <button id="refresh-btn" class="btn btn-primary">Refresh Table</button>
+                                </div>
+                            </div>
+                        </div> <!--End current table-->
+
+                        <!-- History table -->
+                        <div class="col-12">
+                            <div class="card recent-sales overflow-auto">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Model history </h5>
+
+                                    <table class="table table-borderless datatable">
+                                        {% for i in result :%}
+                                            {% if result[loop.index0][0] <= Hist_ID %}
+                                                {% if loop.index0 == 0 %}
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Date</th>
+                                                            <th scope="col">Category</th>
+                                                            <th scope="col">Domain</th>
+                                                            <th scope="col">Model name</th>
+                                                            <th scope="col">Status</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                {%endif%}
+                                                        <tr>
+                                                            <td>{{result[loop.index0][0]}}</td>
+                                                            <td>{{result[loop.index0][1]}}</td>
+                                                            <td>{{result[loop.index0][2]}}</td>
+                                                            <td>{{result[loop.index0][3]}}</td>
+                                                            <td>{{result[loop.index0][4]}}</td>
+                                                            <td>{% if result[loop.index0][5] == 'Success' %}
+                                                                <span class="badge bg-success">Success</span>
+                                                                {% elif result[loop.index0][5] =='Failure' %}
+                                                                <span class="badge bg-danger">Failure</span>
+                                                                {% elif result[loop.index0][5] =='Running' %}
+                                                                <span class="badge bg-info">Running</span>
+                                                                {% elif result[loop.index0][5] =='Evaluated' %}
+                                                                <span class="badge bg-primary">Evaluated</span>
+                                                                {% elif result[loop.index0][5] =='Submitted' %}
+                                                                <span class="badge bg-secondary">Submitted</span>
+                                                                {% endif %}
+
+                                                            </td>
+                                                            <td>
+                                                                {% if result[loop.index0][5] == 'Success' %}
+                                                                    <form method="POST" action="{{url_for('predict', id=result[loop.index0][0])}}" >
+                                                                        <div>
+                                                                            <input type="submit" name="Predict" value="Predict">
+                                                                        </div>
+                                                                    </form>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>{% if result[loop.index0][5] == 'Success' %}
+                                                                <a href="{{url_for('model_info', id=result[loop.index0][0])}}">
+                                                                    <i class="bi bi-info-circle"></i>details </a>
+                                                                {% endif %}
+                                                            </td>
+                                                        </tr>
+                                            {% endif %}
+
+                                        {%endfor%}
+                                            </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div> <!--End history table-->
+                    </div>
+                </div><!--End of left columns -->
+
+                <script>
+                    function updateTable(data) {
+                        var tableBody = $('#data-table tbody');
+                        tableBody.empty();
+
+                        $.each(data, function (index, item) {
+
+                            var row = '<tr><td>' + item.ID + '</td><td>' + item.Date + '</td><td>'+ item.Category + '</td><td>' + item.Domain + '</td><td>' + item.Model_name + '</td><td>';
+                            // alert('Position is : '+ index + '  And  ID is : ' + item.ID + '  And  Date is : ' + item.Date+'  And  Category is : ' + item.Category);
+                            if (item.Status === 'Success') {
+                                row += '<span class="badge bg-success">Success</span>';
+                            } else if (item.Status === 'Failure') {
+                                row += '<span class="badge bg-danger">Failure</span>';
+                            } else if (item.Status === 'Running'){
+                                row += '<span class="badge bg-info">Running</span>';
+                            } else if (item.Status === 'Evaluated'){
+                                row += '<span class="badge bg-primary">Evaluated</span>';
+                            } else if (item.Status === 'Submitted'){
+                                row += '<span class="badge bg-secondary">Submitted</span>';
+                            }
+
+                            row += '</td><td>';
+                            // row += '</td><td>' + item.Input_variables + '</td><td>' + item.Model_accuracy + '</td><td>' + item.Model_recall + '</td><td>' + item.Model_precision  + '</td><td>' + item.Model_r2_score  + '</td><td>' + item.Model_mean_squared_error + '</td><td>' + item.Model_mean_absolute_error  + '</td><td>' + item.Important_variables + '</td><td>';
+                            // row += '<img src="' + item.feature_plot + '"' + '</td><td>';
+
+                            if (item.Status === 'Success') {
+                                row += '<form method="POST" action="/predict/' + item.ID + '">';
+                                row += '<div>';
+                                row += '<input type="submit" name="Predict" value="Predict">';
+                                row += '</div>';
+                                row += '</form>';
+                            }
+                            row += '</td><td>';
+
+                            if (item.Status === 'Success'){
+                            row += '<a href="/model_info/'+ item.ID + '"><i class="bi bi-info-circle"></i>details </a>' + '</td><td>';
+
+                            }
+
+                            row += '</td></tr>';
+                            tableBody.append(row);
+                            // alert('Row added is : '+ row );
+
+                        });
+                    }
+                    $(document).ready(function() {
+                        $("#refresh-btn").on("click", function() {
+                            // When the Refresh Table button is clicked, fetch the updated data from the server and refresh the table
+                            $.ajax({
+                                url: "/get_data",
+                                method: "GET",
+                                dataType: "json",
+                                success: function(data) {
+                                    updateTable(data);
+                                },
+                                error: function(error) {
+                                    console.log("Error fetching data: ", error);
+                                }
+                            });
+                        });
+                    });
+                </script>
+
+                <!-- Right side columns -->
+                <div class="col-lg-3">
+                    <div class="card info-card sales-card">
+
+                        <div class="card-body">
+                            <h5 class="card-title"># of trained models </h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-database-fill"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>{{num_of_models}}</h6>
+                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card info-card sales-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Avg model train time </h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="bi bi-clock-history"></i>
+                                </div>
+                                <div class="ps-3">
+                                    <h6>{{avg_train_time}}&nbsp;s</h6>
+                                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end of right side columns-->
+            </div>
+        </section>
+    </main>
+    <!-- Vendor JS Files -->
+    <script src="/static/assets/vendor/apexcharts/apexcharts.js"></script>
+    <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="/static/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="/static/assets/vendor/quill/quill.min.js"></script>
+    <script src="/static/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="/static/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="/static/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/static/assets/js/main.js"></script>
+</body>
+
+
+
+
